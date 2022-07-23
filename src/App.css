@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  height: 100vh;
+  display: flex;
+  min-height: 400px;
+  min-width: 400px;
 }
 
 .App-logo {
@@ -32,7 +36,82 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #282c34;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6c6c6c;
+  border-radius: 10px;
+}
+
+/* styling element */
+.sidebar {
+  min-width: 50px;
+  width: auto;
+  height: 100%;
+  position: fixed;
+  background-color: #282c34;
+  resize: horizontal;
+}
+
+.content {
+  background-color: #1f1d24;
+  min-height: 100%;
+  height: auto;
+  margin-left: 50px;
+  overflow: auto;
+  transition: all 0.5s ease-in-out;
+  user-select: none;
+}
+
+.content img {
+  pointer-events: none;
+}
+
+.sidebar .button-list .btn {
+  color: whitesmoke;
+  background-color: #282c34;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebar .button-list {
+  width: 50px;
+}
+
+.sidebar .button-list .btn:hover {
+  background-color: #6c6c6c;
+}
+
+.sidebar .button-list .btn:active {
+  background-color: #6c6c6c;
+}
+
+.sidebar .button-list .btn:focus {
+  background-color: #6c6c6c;
+}
+
+.sidebar-content {
+  min-width: 300px;
+  max-width: 90%;
+  resize: horizontal;
+}
+
+.dir-child.hidden {
+  display: none !important;
+}
+
+.hidden.sidebar-content {
+  display: none !important;
 }
