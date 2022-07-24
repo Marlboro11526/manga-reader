@@ -64,7 +64,7 @@ fn read_image(path: String) -> String {
 }
 
 #[tauri::command]
-fn read_chapter_image(mut path: String) -> String {
+async fn read_chapter_image(mut path: String) -> String {
     let mut data = path.split("\\").collect::<Vec<&str>>();
     data.pop();
     path = data.join("\\");
