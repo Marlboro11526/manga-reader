@@ -27,7 +27,6 @@ class Content extends React.Component {
         if (e.button === 2) this.mouseRightDown = true;
         if (e.button === 0 && this.mouseRightDown) console.log("left and right")
         if (e.button === 0) this.divContent.current.addEventListener("mousemove", this.mouseMoveHandler);
-        console.log(e.button);
     }
 
     mouseUpHandler = (e) => {
@@ -64,7 +63,7 @@ class Content extends React.Component {
                 <div className=" m-auto " style={{ width: `${this.state.zoom}%` }}>
                     {
                         this.props.chapter.map((item, index) => {
-                            return <img key={index} className=" w-100" src={`data:image/*;base64,${item}`} alt="" />
+                            return <img key={index} className=" w-100" src={item} alt="" />
                             // return <p className=" text-white" key={index}>{item}</p>
                         })
                     }

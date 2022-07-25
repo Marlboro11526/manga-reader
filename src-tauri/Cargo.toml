@@ -20,6 +20,7 @@ serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.4", features = ["api-all"] }
 base64 = "0.13.0"
 zip = "0.6.2"
+image = "0.24.3"
 
 
 [features]

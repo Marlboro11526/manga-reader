@@ -1,3 +1,8 @@
+html,
+body {
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
   height: 100vh;
@@ -114,4 +119,20 @@
 
 .hidden.sidebar-content {
   display: none !important;
+}
+
+.tree.hidden {
+  display: none !important;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.slider-range {
+  cursor: pointer;
+}
+
+#redSlider .range-slider--range {
+  background: #dd3333;
 }

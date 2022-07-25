@@ -17,7 +17,9 @@ fn main() {
             print_text,
             read_image,
             read_chapter_image,
-            read_chapter_cbz
+            read_chapter_cbz,
+            read_settings,
+            save_settings
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -97,4 +99,34 @@ async fn read_chapter_cbz(path: String) -> String {
         }
     }
     json!(result).to_string().into()
+}
+
+#[tauri::command]
+async fn read_settings() -> String {
+    if std::path::Path::new("settings.json").exists() {
+        let mut file = fs::File::open("settings.json").unwrap();
+        let mut contents = String::new();
+        file.read_to_string(&mut contents).unwrap();
+        contents.into()
+    } else {
+        let result = "{
+            \"min_color\" : {
+                \"r\" : 0,
+                \"g\" : 0,
+                \"b\" : 0
+            },
+            \"max_color\" : {
+                \"r\" : 255,
+                \"g\" : 255,
+                \"b\" : 255
+            }
+        }";
+        fs::write("settings.json", result).unwrap();
+        result.into()
+    }
+}
+
+#[tauri::command]
+async fn save_settings(settings: String) {
+    fs::write("settings.json", settings).unwrap();
 }
