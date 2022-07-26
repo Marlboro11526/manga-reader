@@ -103,8 +103,11 @@ async fn read_chapter_cbz(path: String) -> String {
 
 #[tauri::command]
 async fn read_settings() -> String {
-    if std::path::Path::new("settings.json").exists() {
-        let mut file = fs::File::open("settings.json").unwrap();
+    let mut d = env::current_exe().unwrap();
+    d.pop();
+    d.push("manga-reader.json");
+    if std::path::Path::new(d.to_str().unwrap()).exists() {
+        let mut file = fs::File::open(d.to_str().unwrap()).unwrap();
         let mut contents = String::new();
         file.read_to_string(&mut contents).unwrap();
         contents.into()
@@ -121,12 +124,16 @@ async fn read_settings() -> String {
                 \"b\" : 255
             }
         }";
-        fs::write("settings.json", result).unwrap();
+        println!("{}", d.to_str().unwrap());
+        fs::write(d.to_str().unwrap(), result).unwrap();
         result.into()
     }
 }
 
 #[tauri::command]
 async fn save_settings(settings: String) {
-    fs::write("settings.json", settings).unwrap();
+    let mut d = env::current_exe().unwrap();
+    d.pop();
+    d.push("manga-reader.json");
+    fs::write(d.to_str().unwrap(), settings).unwrap();
 }
