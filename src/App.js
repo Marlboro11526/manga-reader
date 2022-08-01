@@ -92,9 +92,10 @@ class App extends React.Component {
   }
 
   recolorImageList = (imageList) => {
-    let newImageList = [];
+
     Array.from(imageList).forEach((item, index) => {
       let image = new Image();
+      let count = 0;
       image.src = item;
       image.onload = () => {
         let canvas = document.createElement("canvas");
@@ -110,13 +111,14 @@ class App extends React.Component {
           data[i + 2] = (data[i + 2] / 255) * (this.state.max_color.b - this.state.min_color.b) + this.state.min_color.b;
         }
         ctx.putImageData(imageData, 0, 0);
-        newImageList.push(canvas.toDataURL("image/png"));
-        if (imageList.length === newImageList.length) {
-          this.setState({ chapter: newImageList });
+        count += 1;
+        imageList[index] = canvas.toDataURL();
+        if (imageList.length === count) {
+          this.setState({ chapter: imageList });
         }
       }
     });
-    return newImageList;
+    return imageList;
   }
 
   base64ToSrc = (base64) => { return `data:image/*;base64,${base64}` }
